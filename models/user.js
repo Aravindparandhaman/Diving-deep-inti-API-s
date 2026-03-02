@@ -6,9 +6,10 @@ const Schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    lastname: {
-        type: String,
-    },
+    // lastname: {
+    //     type: String,
+    //     required: true
+    // },
     emailId: {
         type: String,
         required: true

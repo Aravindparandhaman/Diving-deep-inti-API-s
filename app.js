@@ -7,10 +7,58 @@ app.use(express.json());
 
 
 
+app.get("/user", async (req, res) => {
+    const userEmail = req.body.emailId;
+    try {
+        const user = await User.findOne({ emailId: userEmail });
+        res.send(user);
+
+    } catch (error) {
+        res.status(400).send("error finding the user" + err.message)
+
+    }
+})
+
+
+// feed API get the all users from the Database...
+app.get("/feed", async (req, res) => {
+
+    try {
+        const users = await User.find({});
+        if(!users){
+            return res.status(404).send("user not found")
+        }else{
+            res.send(users);
+        }
+        
+
+    } catch (error) {
+        res.status(400).send("error finding the user" + err.message)
+    }
+
+})
+
+app.get("/feeds", async (req, res) => {
+
+    try {
+        const users = await User.findOne({ emailId: userEmail })
+        if(!users){
+            return res.status(404).send("user not found")
+        }else{
+             res.send(users)
+        }
+       
+
+    } catch (err) {
+        res.status(400).send("error finding the user" + err.message)
+
+
+    }
+
+})
 
 app.post("/signup", async (req, res) => {
 
-    console.log(req.body)
     const user = new User(req.body);
     // const user = new User({
     //     firstname: "virat",
