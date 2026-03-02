@@ -11,19 +11,20 @@ app.use(express.json());
 app.post("/signup", async (req, res) => {
 
     console.log(req.body)
+    const user = new User(req.body);
     // const user = new User({
     //     firstname: "virat",
     //     lastName: "kohli",
     //     emailId: "virat@gmail.com",
     //     password: "virat@123456"
     // })
-    // try {
-    //     await user.save();
-    //     res.send("user created successfully...")
+    try {
+        await user.save();
+        res.send("user created successfully...")
 
-    // } catch (error) {
-    //     res.status(500).send("error saving the user" + err.message)
-    // }
+    } catch (error) {
+        res.status(500).send("error saving the user" + err.message)
+    }
 })
 
 
